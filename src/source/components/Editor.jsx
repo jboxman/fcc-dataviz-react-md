@@ -12,6 +12,7 @@ export default class Editor extends React.Component {
   render() {
     return (
       <textarea
+        className="textarea"
         defaultValue={this.state.value}
         onKeyUp={this.props.onChange}></textarea>
     )

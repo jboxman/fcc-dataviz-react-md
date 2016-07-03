@@ -12,7 +12,9 @@ export default class Preview extends React.Component {
 
   render() {
     return (
-      <div dangerouslySetInnerHTML={this.createMarkup(this.props.data)}></div>
+      <div
+        id={"preview"}
+        dangerouslySetInnerHTML={this.createMarkup(this.props.data)}></div>
     )
   }
 }

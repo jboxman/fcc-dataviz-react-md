@@ -1,0 +1,22 @@
+@mixin setup() {
+  margin: 1em 0.25em;
+  padding: 0.25em;
+}
+
+#main {
+  width: 90%;
+}
+
+#editor {
+  @include setup();
+}
+#editor .textarea {
+  width: 40em;
+  height: 20em;
+  resize: none;
+}
+#preview {
+  overflow: scroll;
+  height: 40em;
+  @include setup();
+}
