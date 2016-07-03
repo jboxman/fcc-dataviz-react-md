@@ -14,9 +14,9 @@ var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const sassLoaders = [
+  'style-loader',
   'css-loader',
-  'postcss-loader',
-  'sass-loader?indentedSyntax=sass&includePaths[]=' + path.resolve(__dirname, './src/sass')
+  'sass-loader'
 ];
 
 module.exports = {
@@ -36,8 +36,8 @@ module.exports = {
     publicPath: '/assets/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('style.css', {allChunks: true})
+    new webpack.HotModuleReplacementPlugin() //,
+    //new ExtractTextPlugin('style.css', {allChunks: true})
   ],
   module: {
     loaders: [
@@ -56,9 +56,16 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        loader: sassLoaders.join('!'),
+        include: path.join(__dirname, 'src')
+      },
+      /*
+      {
+        test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
         include: path.join(__dirname, 'src')
       },
+      */
       // bootstrap-loader suggested loaders
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -69,6 +76,10 @@ module.exports = {
         loader: 'file'
       }
     ]
+  },
+  sassLoader: {
+    //indentedSyntax: 'sass',
+    //includePaths: [path.resolve(__dirname, './src/sass')]
   },
   postcss:[autoprefixer]
 };
